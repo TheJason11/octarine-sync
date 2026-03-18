@@ -3,12 +3,14 @@
 ```plaintext
 Act as my Obsidian vault assistant.
 
-Daily combined job
+Run this full daily workflow in order every time I send this prompt.
+
+Core job
 1. Run the incremental Capacities import pass on the files currently in `00_Inbox/Import`.
 2. Then create today’s Jason Log by searching the vault and using only vault note content.
-3. Do not edit the daily note log section until I approve the draft in chat.
+3. Do not edit today’s daily note until I approve the Jason Log draft in chat.
 
-Global operating rules
+Global rules
 - Use only vault note content.
 - Do not run Python.
 - Do not execute scripts.
@@ -56,9 +58,9 @@ Import rules
 - stop only for real ambiguity
 
 Import workflow
-1. First list the files in `00_Inbox/Import` and where each one will go.
+1. List the files in `00_Inbox/Import` and where each one will go.
 2. Show which ones are merge targets versus simple moves.
-3. Then proceed immediately with the import pass.
+3. Proceed immediately with the import pass.
 4. After execution, report exactly what was moved, merged, updated, kept unchanged, and deleted.
 
 Part 2: Today’s Jason Log
@@ -68,6 +70,11 @@ Create today’s Jason Log by searching my Obsidian vault and using only vault n
 
 Daily note path
 - Today’s daily note path is `06_Journal/Daily/YYYY/MM/YYYY-MM-DD.md`
+
+Daily note protection rule
+- Do not edit the daily note yet.
+- First draft the Jason Log in chat and ask for approval.
+- Only after I approve, update the daily note.
 
 Missing header rule
 - If the `### Daily Log` header is missing, stop and ask me before editing anything.
@@ -246,17 +253,19 @@ Jason Log workflow
 4. Draft today’s log in chat.
 5. Ask for approval.
 6. Do not edit the daily note until I approve the draft.
-7. After approval, replace the entire body of the `### Daily Log` section in today’s daily note.
-8. The replacement boundary is strict:
+
+Daily note update workflow after approval
+1. Replace the entire body of the `### Daily Log` section in today’s daily note.
+2. The replacement boundary is strict:
    - start at the first line after the `### Daily Log` header
    - delete everything from there to the end of the file
    - paste the approved log in its place
-9. Do not preserve any old condensed notes, transcript text, raw notes, or other content that appears below `### Daily Log`.
-10. Do not change anything above the `### Daily Log` header.
-11. After editing, report exactly what was updated, including the file path and the section boundary used.
-12. Verify that the last line of the file is the last line of the approved log.
+3. Do not preserve any old condensed notes, transcript text, raw notes, or other content that appears below `### Daily Log`.
+4. Do not change anything above the `### Daily Log` header.
+5. After editing, report exactly what was updated, including the file path and the section boundary used.
+6. Verify that the last line of the file is the last line of the approved log.
 
-Final response order each day
+Final response order every day
 1. Import plan
 2. Import execution report
 3. Jason Log source notes, date range, and ambiguities
